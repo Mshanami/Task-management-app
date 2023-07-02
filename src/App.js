@@ -1,52 +1,54 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { useState } from 'react';
 import {BsTelephone} from 'react-icons/bs'
 
 function App() {
-  const [celnumber, setCelnumber]=useState('');
-  const [data, setData]=useState('');
-  const [valid, setValid]=useState('')
-  const valueChange = (event) =>{
-    setCelnumber(event.target.value)
+  const [sports,setSports] = useState([]);
+  const [spoinput, setSpoinput]=useState('');
+  const handleChange = (event) =>{
+    setSpoinput(event.target.value);
+    
+  };
+  
+  const handleSubmit = (event) =>{
+    event.preventDefault();
+    setSports([...sports, spoinput]);
+    setSpoinput('')
+    console.log(spoinput);
   }
-  const handleClick = () =>{
-    fetch('https://api.api-ninjas.com/v1/validatephone?number='+ celnumber,
-        {headers: {'X-Api-Key': '/49MvzZK96l4l3uyoXBPBA==zBegcro3P0xGlGFV'
-          }
-        })
-  .then(response => response.json())
-  .then(data => {setValid(data.is_valid)
-               }
+  const handleDelete = (index) =>{
+    const updatedSports=[...sports];
+    updatedSports.splice(index, 1);
+    setSports(updatedSports);
 
-    )
+    console.log('Deleted')
   
   }
+
   return (
-    <div className="App">
+    <div className='App'>
+    <h2>What to do today?</h2>
+   <div className='task'>
+    <form onSubmit={handleSubmit}>
+      <input type='text'
+       value={spoinput}
+       onChange={handleChange}
+       placeholder='add your task here....'
+       required
+        />
+       <button type="submit">Add task</button>
+
+        </form>
+        
+        <ul>
+      {sports.map((sport,index) => <li key={index}>{sport}
       
-        <nav>Authephone<BsTelephone /></nav>
-        <div className='body'>
-        <p className='text'>Want to validate the cellphone or telephone number on your,you're in the right place</p>
-        <div className='content'>
-        <div className='content-input'>
-        <label>Enter the phone number below
-        <input type="text" 
-        value={celnumber} 
-        onChange={valueChange}
-        placeholder='eg. +27607017420'
-        ></input></label>
-        <button onClick={handleClick}>Validate</button>
-        </div>
-        <div className='results'>
-          <p>Valid:{valid}</p>
-          <p>country:</p>
-          <p>Int.number:</p>
-          <p>local number:</p>
-          <p>Region:</p>
-        </div>
-      </div>
-      </div>
+      </li>)}
+      <button className='remove' onClick={handleDelete}>Clear tasks</button>
+      </ul>
+      
+    </div>
     </div>
   );
 }
