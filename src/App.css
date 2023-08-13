@@ -1,10 +1,19 @@
 .App{
   align-items: center;
-  padding-right: 15px;
+  padding: 15px;
+  font-size: 17px;
 }
 h2{
-  color: #15db95;
+  color: #003153;
   margin-left: 25%;
+  font-family: 'Times New Roman', Times, serif;
+}
+.quote{
+  margin-left: 25%;
+  width: 40%;
+  font-style: italic;
+  
+
 }
 
 .task{
@@ -21,9 +30,21 @@ h2{
   padding: 10px;
   
 }
+.date{
+  margin-left: 10%;
+  text-transform: uppercase;
+  font-style: italic;
+  font-weight: bold;
+  color: #003153;
+
+}
+.animate__animated.animate__fadeOutDown {
+  --animate-duration: 15s;
+}
+
 
 form{
-  margin-top: 10%;
+  margin-top: 5%;
   margin-bottom: 4%;
   width: 90%;
   display: flex;
@@ -39,6 +60,10 @@ input{
   margin-left: 39px;
 
 }
+input:focus{
+  border: 2px solid #231471;
+}
+
 ul{
   margin: 6px;
 }
@@ -49,11 +74,24 @@ li{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  color: rgb(21, 20, 20);
+  color: rgb(58, 57, 57);
   border-radius: 9px;
   width: 90%;
   margin-bottom: 4px;
   border: 1px solid #05386b;
+  font-size: 13px;
+}
+.done{
+  padding: 3px;
+  border: 1px solid #231471;
+  border-radius: 8px;
+  width: fit-content;
+  background-color: #05386b;
+  color: #edf5e1;
+  cursor: pointer;
+}
+.disabled-button{
+  cursor: not-allowed;
 }
 form button{
   padding: 5px;
@@ -63,6 +101,7 @@ form button{
   background-color: #05386b;
   color: #edf5e1;
   cursor: pointer;
+  margin-left: -10px;
 }
 .remove{
   padding: 5px;
@@ -73,7 +112,7 @@ form button{
   
   color: #edf5e1;
   cursor: pointer;
-  display: ;
+  
   
 }
 button:hover{
@@ -85,12 +124,25 @@ button:active{
 .remove:hover{
   background-color: rgb(223, 42, 42);
 }
+
+
 @media(max-width:650px){
-  .task{
-    width: 100%;
-    margin: 15px;
-    margin-top: 20%;
+  App{
+    font-size: 20px;
   }
+  .quote{
+    margin-left: 15%;
+    width: 70%;
+    color: #003153;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .task{
+    width: 95%;
+    margin-left: 0;
+    margin-top: 20%;
+    font-size: 18px;
+  }
+ 
   form{
     width: 100%;
     margin: 0px;
